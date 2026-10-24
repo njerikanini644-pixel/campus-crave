@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fbf7ee">
+<title>Campus Crave — Good food, right here</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="nav">
+            <div class="brand">
+             <div class="mark">✦</div>campus<span style="color:var(--orange);margin-left:-9px">crave</span></div>
+             <div class="navright">
+            <button class="navlink" onclick="openOrders()">My orders</button>
+            <button class="navlink" onclick="openFeedback()">Feedback</button>
+            <button class="cartbtn" onclick="openCart()">Your bag <span id="cartCount">0</span></button>
+        </div>
+        </header>
+<section class="hero">
+    <div>
+        <div class="eyebrow">Campus meals, made easy</div>
+        <h1>Good food.<br><em>Right here.</em></h1>
+        <p>Your favourite local spots, one easy order. Pick your hostel, choose a delivery wave, and we’ll bring your meal to your hostel pickup point.</p>
+        <div class="heroActions">
+        <button class="primary" onclick="document.getElementById('restaurants').scrollIntoView({behavior:'smooth'})">Explore restaurants ↘</button>
+        <button class="secondary" onclick="openOrders()">Track an order</button>
+    </div>
+    </div>
+    <div class="heroart">
+        <div class="blob"></div>
+        <div class="blob2"></div>
+        <div class="sticker s1">Made for campus life ✨</div>
+        <div class="plate">🍛</div>
+        <div class="sticker s2">Fresh picks, happy breaks</div>
+    </div>
+</section>
+<div class="deliverybar">
+    <span class="dot"></span>
+        <strong>Dinner delivery today</strong>
+        <span class="sep"></span>
+        <span>7:00 pm</span>
+        <small>Early plate</small>
+    <span class="sep"></span>
+    <span>8:30 pm</span>
+    <small>Last wave</small>
+    <span style="margin-left:auto;color:var(--lime);font-weight:800">KSh 10 / package</span>
+</div>
+<section id="restaurants">
+    <div class="sectionhead"><div>
+        <div class="eyebrow">Find your flavour</div>
+        <h2>Pick a local favourite</h2>
+    </div>
+    <p id="hotelCount">8 spots to explore</p>
+    </div>
+<div class="filters" id="filters">
+</div>
+<div class="grid" id="hotels">
+</div>
+</section>
+<section class="menu" id="menuArea"><aside class="sidecard">
+    
+    <div class="eyebrow" style="color:var(--lime)">The menu</div>
+    <h2 id="menuTitle">Choose a restaurant</h2>
+    <p id="menuDesc">Tap a restaurant to see its menu and add favourites to your bag.</p>
+    <div>
+        <span class="pill">🥡 Hostel pickup</span>
+        <span class="pill">🕖 7:00 or 8:30 pm</span>
+        <span class="pill">💚 KSh 10 delivery</span>
+    </div></aside>
+    <div>
+        <div class="sectionhead"><div>
+            <div class="eyebrow">Freshly picked</div>
+            <h2 id="dishHeading">Menu highlights</h2>
+        </div>
+        <p>Prices in KSh</p>
+    </div>
+    <div class="menulist" id="dishes">
+        <div class="empty">Choose a restaurant above to explore its menu.
+
+        </div>
+    </div>
+</div>
+</section>
+<section class="features">
+    <div class="feature"><b>📍 Made for your hostel</b>
+        <p>Choose one of the four hostels as your destination. Collect from the shared pickup point there.</p>
+    </div>
+    <div class="feature"><b>💸 Simple, clear pricing</b>
+        <p>See food prices and the KSh 10 delivery fee before you place your order.</p>
+    </div>
+    <div class="feature">
+        <b>🙌 Your voice matters</b>
+        <p>Tell us what you think or suggest how Campus Crave can get even better.</p>
+    </div>
+</section>
+<footer class="footer">
+    <div>
+        <b style="color:var(--ink)">campus<span style="color:var(--orange)">crave</span>
+        </b> · Good food, right here.</div>
+        <div>Student-powered · Local favourites · Hostel pickup</div>
+    </footer>
+</div>
+<div class="modal" id="cartModal">
+    <div class="box">
+    <div class="boxhead">
+        <h2>Your order bag 🛍️</h2>
+        <button class="close" onclick="closeModal('cartModal')">×
+
+        </button>
+    </div>
+    <div id="cartContents"></div>
+    </div>
+    <div class="field">
+        <label>Special combination / custom request (optional)</label>
+        <textarea id="customOrder" placeholder="e.g. ugali mayai and smocha. Hotel confirms availability and price before payment."></textarea>
+    </div>
+    <div class="row">
+        <div class="field">
+            <label>Your name</label><input id="customerName" placeholder="Name for pickup">
+        </div>
+        <div class="field">
+            <label>Phone number</label><input id="customerPhone" inputmode="tel" placeholder="07xx xxx xxx">
+        </div>
+    </div>
+    <div class="row">
+<div class="field">
+<label>Hostel destination</label>
+<select id="hostel" onchange="updatePickupPoint">
+<option value="">Choose hostel</option>
+<option value="Kilimanjaro Hostels · Ladies">Kilimanjaro Hostels · Ladies</option>
+<option value="Aberdare Hostels · Ladies">Aberdare Hostels · Ladies</option>
+<option value="Mt Kenya · Boys">Mt Kenya · Boys</option>
+</select>
+ </div>
+<div class="field">
+<label>Delivery wave</label>
+<select id="wave">
+<option value="">Choose a wave</option>
+<option>7:00 pm · Early pickup</option>
+<option>8:30 pm · Final pickup</option>
+</select>
+</ div >
+</ div >
+<div class="field">
+ <label>Hostel pickup point</label>
+<input id="handoff" placeholder="Choose hostel first" readonly>
+</ div >
+<div class="note">
+<b>M-PESA payment</b>
+<br>This demo records your order and shows payment instructions. Confirm your actual Pochi/Till/Paybill details before launch. Custom requests need hotel price confirmation before they’re charged.
+</ div >
+<button class="primary full" onclick="placeOrder">
+Place order · pay with M-PESA
+</button>
+</ div >
+</ div >
+<script src="app.js"></script><button onclick="openAdmin()" aria-label="Manage menu availability" style="position:fixed;bottom:14px;right:14px;border:1px solid var(--line);background:#fffdf8;color:#53645a;padding:8px 11px;border-radius:12px;font-size:11px;font-weight:700;opacity:.8">Menu controls</button></body></html>
+
+
+
+
